@@ -1,0 +1,11 @@
+{
+    "api_url": "grpc://localhost:20051",
+    "chaincode_url": "grpc://localhost:20052",
+    "container_name": "peer0.rbi.auto.com",
+    "identity": "rbiAdmin",
+    "msp_id": "RBIMSP",
+    "name": "RBIPeer1",
+    "short_name": "RBIPeer1",
+    "type": "fabric-peer",
+    "wallet": "RBI"
+}

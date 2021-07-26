@@ -1,0 +1,11 @@
+{
+    "api_url": "grpc://localhost:19051",
+    "chaincode_url": "grpc://localhost:19052",
+    "container_name": "peer0.banktwo.auto.com",
+    "identity": "banktwoAdmin",
+    "msp_id": "BankTwoMSP",
+    "name": "BankTwoPeer1",
+    "short_name": "BankTwoPeer1",
+    "type": "fabric-peer",
+    "wallet": "BankTwo"
+}

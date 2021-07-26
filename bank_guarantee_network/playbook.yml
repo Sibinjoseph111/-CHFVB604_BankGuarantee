@@ -1,0 +1,233 @@
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+---
+- name: Deploy blockchain infrastructure and smart contracts
+  hosts: localhost
+  vars:
+    #
+    # For information on these configuration options, read the documentation:
+    # https://github.com/IBM-Blockchain/ansible-role-blockchain-platform-manager#example-playbook
+    #
+    infrastructure:
+      type: docker
+      docker:
+        network: bank_guarantee
+    organizations:
+      - &BankOne
+        msp:
+          id: "BankOneMSP"
+          admin:
+            identity: "bankoneAdmin"
+            secret: "bankoneAdminpw"
+          ibp:
+            display_name: "BankOne MSP"
+        ca: &BankOneCA
+          id: "BankOneCA"
+          admin_identity: "admin"
+          admin_secret: "adminpw"
+          tls:
+            enabled: false
+          docker:
+            name: ca.bankone.auto.com
+            hostname: ca.bankone.auto.com
+            port: 18050
+          ibp:
+            display_name: "BankOne CA"
+        peers:
+          - &BankOnePeer1
+            id: "BankOnePeer1"
+            identity: "bankonepeer1"
+            secret: "bankonepeer1pw"
+            database_type: couchdb
+            tls:
+              enabled: false
+              identity: "bankonepeer1tls"
+              secret: "bankonepeer1tlspw"
+            docker:
+              name: peer0.bankone.auto.com
+              hostname: peer0.bankone.auto.com
+              port: 18051
+              chaincode_port: 18052
+              operations_port: 18053
+              couchdb:
+                name: couchdb0.bankone.auto.com
+                hostname: couchdb0.bankone.auto.com
+                port: 18054
+            ibp:
+              display_name: "BankOne Peer1"
+        nodes: "{{ playbook_dir }}/nodes/BankOne"
+        wallet: "{{ playbook_dir }}/wallets/BankOne"
+        gateways: "{{ playbook_dir }}/gateways/BankOne"
+      - &BankTwo
+        msp:
+          id: "BankTwoMSP"
+          admin:
+            identity: "banktwoAdmin"
+            secret: "banktwoAdminpw"
+          ibp:
+            display_name: "BankTwo MSP"
+        ca: &BankTwoCA
+          id: "BankTwoCA"
+          admin_identity: "admin"
+          admin_secret: "adminpw"
+          tls:
+            enabled: false
+          docker:
+            name: ca.banktwo.auto.com
+            hostname: ca.banktwo.auto.com
+            port: 19050
+          ibp:
+            display_name: "BankTwo CA"
+        peers:
+          - &BankTwoPeer1
+            id: "BankTwoPeer1"
+            identity: "banktwopeer1"
+            secret: "banktwopeer1pw"
+            database_type: couchdb
+            tls:
+              enabled: false
+              identity: "banktwopeer1tls"
+              secret: "banktwopeer1tlspw"
+            docker:
+              name: peer0.banktwo.auto.com
+              hostname: peer0.banktwo.auto.com
+              port: 19051
+              chaincode_port: 19052
+              operations_port: 19053
+              couchdb:
+                name: couchdb0.banktwo.auto.com
+                hostname: couchdb0.banktwo.auto.com
+                port: 19054
+            ibp:
+              display_name: "BankTwo Peer1"
+        nodes: "{{ playbook_dir }}/nodes/BankTwo"
+        wallet: "{{ playbook_dir }}/wallets/BankTwo"
+        gateways: "{{ playbook_dir }}/gateways/BankTwo"
+      - &RBI
+        msp:
+          id: "RBIMSP"
+          admin:
+            identity: "rbiAdmin"
+            secret: "rbiAdminpw"
+          ibp:
+            display_name: "RBI MSP"
+        ca: &RBICA
+          id: "RBICA"
+          admin_identity: "admin"
+          admin_secret: "adminpw"
+          tls:
+            enabled: false
+          docker:
+            name: ca.rbi.auto.com
+            hostname: ca.rbi.auto.com
+            port: 20050
+          ibp:
+            display_name: "RBI CA"
+        peers:
+          - &RBIPeer1
+            id: "RBIPeer1"
+            identity: "rbipeer1"
+            secret: "rbipeer1pw"
+            database_type: couchdb
+            tls:
+              enabled: false
+              identity: "rbipeer1tls"
+              secret: "rbipeer1tlspw"
+            docker:
+              name: peer0.rbi.auto.com
+              hostname: peer0.rbi.auto.com
+              port: 20051
+              chaincode_port: 20052
+              operations_port: 20053
+              couchdb:
+                name: couchdb0.rbi.auto.com
+                hostname: couchdb0.rbi.auto.com
+                port: 20054
+            ibp:
+              display_name: "RBI Peer1"
+        nodes: "{{ playbook_dir }}/nodes/RBI"
+        wallet: "{{ playbook_dir }}/wallets/RBI"
+        gateways: "{{ playbook_dir }}/gateways/RBI"  
+      - &BankGuaranteeOrdererOrg
+        msp:
+          id: "BankGuaranteeOrdererMSP"
+          admin:
+            identity: "bankguaranteeordererAdmin"
+            secret: "bankguaranteeordererAdminpw"
+          ibp:
+            display_name: "BankGuaranteeOrderer MSP"
+        ca: &BankGuaranteeOrdererCA
+          id: "BankGuaranteeOrdererCA"
+          admin_identity: "admin"
+          admin_secret: "adminpw"
+          tls:
+            enabled: false
+          docker:
+            name: ca.bankguaranteeorderer.auto.com
+            hostname: ca.bankguaranteeorderer.auto.com
+            port: 17050
+          ibp:
+            display_name: "BankGuaranteeOrderer CA"
+        orderer: &BankGuaranteeOrderer
+          id: "BankGuaranteeOrderer1"
+          identity: "bankguaranteeorderer1"
+          secret: "bankguaranteeorderer1pw"
+          tls:
+            enabled: false
+            identity: "bankguaranteeorderer1tls"
+            secret: "bankguaranteeorderer1tlspw"
+          consortium:
+            members:
+              - *BankOne
+              - *BankTwo
+              - *RBI
+          docker:
+            name: bankguaranteeorderer.auto.com
+            hostname: bankguaranteeorderer.auto.com
+            port: 17051
+            operations_port: 17052
+          ibp:
+            display_name: "BankGuaranteeOrderer1"
+            cluster_name: "BankGuaranteeOrdererCluster"
+        nodes: "{{ playbook_dir }}/nodes/BankGuaranteeOrderer"
+        wallet: "{{ playbook_dir }}/wallets/BankGuaranteeOrderer"
+        gateways: "{{ playbook_dir }}/gateways/BankGuaranteeOrderer"
+    channels:
+      - &Channel1
+        name: channel1
+        orderer: *BankGuaranteeOrderer
+        members:
+          - <<: *BankOne
+            committing_peers:
+              - *BankOnePeer1
+            anchor_peers:
+              - *BankOnePeer1
+          - <<: *BankTwo
+            committing_peers:
+              - *BankTwoPeer1
+            anchor_peers:
+              - *BankTwoPeer1
+          - <<: *RBI
+            committing_peers:
+              - *RBIPeer1
+            anchor_peers:
+              - *RBIPeer1
+    gateways:
+      - name: BankOne gateway
+        organization:
+          <<: *BankOne
+          gateway_peers:
+            - <<: *BankOnePeer1
+      - name: BankTwo gateway
+        organization:
+          <<: *BankTwo
+          gateway_peers:
+            - <<: *BankTwoPeer1
+      - name: RBI gateway
+        organization:
+          <<: *RBI
+          gateway_peers:
+            - <<: *RBIPeer1
+  roles:
+    - ibm.blockchain_platform_manager

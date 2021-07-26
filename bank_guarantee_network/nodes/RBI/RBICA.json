@@ -1,0 +1,11 @@
+{
+    "api_url": "http://localhost:20050",
+    "ca_name": "ca",
+    "container_name": "ca.rbi.auto.com",
+    "identity": "admin",
+    "msp_id": "RBIMSP",
+    "name": "RBICA",
+    "short_name": "RBICA",
+    "type": "fabric-ca",
+    "wallet": "RBI"
+}

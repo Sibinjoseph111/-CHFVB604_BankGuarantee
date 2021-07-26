@@ -1,0 +1,38 @@
+{
+    "certificateAuthorities": {
+        "BankOneCA": {
+            "caName": "ca",
+            "url": "http://localhost:18050"
+        }
+    },
+    "client": {
+        "connection": {
+            "timeout": {
+                "orderer": "300",
+                "peer": {
+                    "endorser": "300"
+                }
+            }
+        },
+        "organization": "BankOneMSP"
+    },
+    "name": "BankOne gateway",
+    "organizations": {
+        "BankOneMSP": {
+            "certificateAuthorities": [
+                "BankOneCA"
+            ],
+            "mspid": "BankOneMSP",
+            "peers": [
+                "BankOnePeer1"
+            ]
+        }
+    },
+    "peers": {
+        "BankOnePeer1": {
+            "url": "grpc://localhost:18051"
+        }
+    },
+    "version": "1.0.0",
+    "wallet": "BankOne"
+}

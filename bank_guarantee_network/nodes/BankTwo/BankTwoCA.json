@@ -1,0 +1,11 @@
+{
+    "api_url": "http://localhost:19050",
+    "ca_name": "ca",
+    "container_name": "ca.banktwo.auto.com",
+    "identity": "admin",
+    "msp_id": "BankTwoMSP",
+    "name": "BankTwoCA",
+    "short_name": "BankTwoCA",
+    "type": "fabric-ca",
+    "wallet": "BankTwo"
+}

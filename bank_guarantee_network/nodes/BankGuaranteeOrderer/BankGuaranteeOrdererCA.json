@@ -1,0 +1,11 @@
+{
+    "api_url": "http://localhost:17050",
+    "ca_name": "ca",
+    "container_name": "ca.bankguaranteeorderer.auto.com",
+    "identity": "admin",
+    "msp_id": "BankGuaranteeOrdererMSP",
+    "name": "BankGuaranteeOrdererCA",
+    "short_name": "BankGuaranteeOrdererCA",
+    "type": "fabric-ca",
+    "wallet": "BankGuaranteeOrderer"
+}

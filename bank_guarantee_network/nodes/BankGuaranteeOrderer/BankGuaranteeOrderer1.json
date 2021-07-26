@@ -1,0 +1,10 @@
+{
+    "api_url": "grpc://localhost:17051",
+    "container_name": "bankguaranteeorderer.auto.com",
+    "identity": "bankguaranteeordererAdmin",
+    "msp_id": "BankGuaranteeOrdererMSP",
+    "name": "BankGuaranteeOrderer1",
+    "short_name": "BankGuaranteeOrderer1",
+    "type": "fabric-orderer",
+    "wallet": "BankGuaranteeOrderer"
+}

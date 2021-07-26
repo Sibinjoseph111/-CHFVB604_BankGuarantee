@@ -1,0 +1,38 @@
+{
+    "certificateAuthorities": {
+        "BankTwoCA": {
+            "caName": "ca",
+            "url": "http://localhost:19050"
+        }
+    },
+    "client": {
+        "connection": {
+            "timeout": {
+                "orderer": "300",
+                "peer": {
+                    "endorser": "300"
+                }
+            }
+        },
+        "organization": "BankTwoMSP"
+    },
+    "name": "BankTwo gateway",
+    "organizations": {
+        "BankTwoMSP": {
+            "certificateAuthorities": [
+                "BankTwoCA"
+            ],
+            "mspid": "BankTwoMSP",
+            "peers": [
+                "BankTwoPeer1"
+            ]
+        }
+    },
+    "peers": {
+        "BankTwoPeer1": {
+            "url": "grpc://localhost:19051"
+        }
+    },
+    "version": "1.0.0",
+    "wallet": "BankTwo"
+}

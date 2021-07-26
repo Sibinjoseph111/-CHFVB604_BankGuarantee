@@ -1,0 +1,44 @@
+[
+    {
+        "transactionName": "guaranteeExists",
+        "transactionLabel": "A test guaranteeExists transaction",
+        "arguments": [
+            "001"
+        ],
+        "transientData": {}
+    },
+    {
+        "transactionName": "createGuarantee",
+        "transactionLabel": "A test createGuarantee transaction",
+        "arguments": [
+            "001",
+            "some value"
+        ],
+        "transientData": {}
+    },
+    {
+        "transactionName": "readGuarantee",
+        "transactionLabel": "A test readGuarantee transaction",
+        "arguments": [
+            "001"
+        ],
+        "transientData": {}
+    },
+    {
+        "transactionName": "updateGuarantee",
+        "transactionLabel": "A test updateGuarantee transaction",
+        "arguments": [
+            "001",
+            "some other value"
+        ],
+        "transientData": {}
+    },
+    {
+        "transactionName": "deleteGuarantee",
+        "transactionLabel": "A test deleteGuarantee transaction",
+        "arguments": [
+            "001"
+        ],
+        "transientData": {}
+    }
+]

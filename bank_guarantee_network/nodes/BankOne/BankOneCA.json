@@ -1,0 +1,11 @@
+{
+    "api_url": "http://localhost:18050",
+    "ca_name": "ca",
+    "container_name": "ca.bankone.auto.com",
+    "identity": "admin",
+    "msp_id": "BankOneMSP",
+    "name": "BankOneCA",
+    "short_name": "BankOneCA",
+    "type": "fabric-ca",
+    "wallet": "BankOne"
+}

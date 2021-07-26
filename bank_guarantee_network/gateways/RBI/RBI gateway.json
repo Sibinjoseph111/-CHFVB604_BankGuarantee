@@ -1,0 +1,38 @@
+{
+    "certificateAuthorities": {
+        "RBICA": {
+            "caName": "ca",
+            "url": "http://localhost:20050"
+        }
+    },
+    "client": {
+        "connection": {
+            "timeout": {
+                "orderer": "300",
+                "peer": {
+                    "endorser": "300"
+                }
+            }
+        },
+        "organization": "RBIMSP"
+    },
+    "name": "RBI gateway",
+    "organizations": {
+        "RBIMSP": {
+            "certificateAuthorities": [
+                "RBICA"
+            ],
+            "mspid": "RBIMSP",
+            "peers": [
+                "RBIPeer1"
+            ]
+        }
+    },
+    "peers": {
+        "RBIPeer1": {
+            "url": "grpc://localhost:20051"
+        }
+    },
+    "version": "1.0.0",
+    "wallet": "RBI"
+}

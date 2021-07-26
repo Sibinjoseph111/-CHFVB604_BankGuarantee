@@ -1,0 +1,11 @@
+{
+    "api_url": "grpc://localhost:18051",
+    "chaincode_url": "grpc://localhost:18052",
+    "container_name": "peer0.bankone.auto.com",
+    "identity": "bankoneAdmin",
+    "msp_id": "BankOneMSP",
+    "name": "BankOnePeer1",
+    "short_name": "BankOnePeer1",
+    "type": "fabric-peer",
+    "wallet": "BankOne"
+}
